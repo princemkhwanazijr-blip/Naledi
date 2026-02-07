@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>For You — Happy Valentine's Day</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container">
+      <h1 id="brand">For You ♥</h1>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-toggle" aria-controls="nav-links" aria-expanded="false">☰</button>
+        <ul id="nav-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#quiz">Quiz</a></li>
+          <li><a href="#game">Game</a></li>
+          <li><a href="#message">Secret</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="hero" tabindex="-1">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h2>Happy Valentine's Day, Naledi!</h2>
+          <p>Open your surprise — tap the heart below or see how long until Valentine's Day.</p>
+
+          <div class="countdown" aria-live="polite" id="countdown" title="Countdown to Valentine's Day">
+            <strong id="cd-days">--</strong> days
+            <span id="cd-time">--:--:--</span>
+          </div>
+
+          <div class="cta-row">
+            <button id="open-btn" class="btn btn-primary" aria-haspopup="true">Open Surprise ♥</button>
+            <button id="ask-btn" class="btn">Ask Her Now 💌</button>
+            <button id="play-music" class="btn" aria-pressed="false">Play "Death Do Us Part" ♪</button>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="big-heart" id="big-heart" title="Click me"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="story" class="container section">
+      <h3>Our Story</h3>
+      <ol class="timeline" aria-label="Timeline of our story">
+        <li><strong>Met:</strong> The day we met — replace with your date and short note.</li>
+        <li><strong>First date:</strong> Where we went and a fond memory.</li>
+        <li><strong>Special moments:</strong> A short sweet note or two.</li>
+      </ol>
+    </section>
+
+    <section id="gallery" class="container section">
+      <h3>Gallery</h3>
+      <p class="muted">Click to view — replace images in the /assets folder.</p>
+      <div class="gallery-grid" id="gallery-grid">
+        <!-- Keep any existing photo1.jpg if you have it -->
+        <img src="assets/photo1.jpg" alt="Gallery photo 1" loading="lazy" />
+        <!-- New photos you provided — save them with these filenames -->
+        <img src="assets/photo2.jpg" alt="Gallery photo 2" loading="lazy" />
+        <img src="assets/photo3.jpg" alt="Gallery photo 3" loading="lazy" />
+        <img src="assets/photo4.jpg" alt="Gallery photo 4" loading="lazy" />
+        <img src="assets/photo5.jpg" alt="Gallery photo 5" loading="lazy" />
+      </div>
+    </section>
+
+    <section id="quiz" class="container section" aria-labelledby="quiz-title">
+      <h3 id="quiz-title">How well do you know me?</h3>
+      <div id="quiz-area" class="quiz">
+        <div id="question"></div>
+        <div id="answers" role="list"></div>
+        <div class="quiz-controls">
+          <button id="next-q" class="btn" disabled>Next</button>
+          <div id="quiz-result" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="game" class="container section">
+      <h3>Catch the Hearts</h3>
+      <p>Click hearts to collect points. Try to get as many as you can in 20 seconds!</p>
+      <div id="game-area" class="game-area" tabindex="0" aria-label="Catch the hearts game"></div>
+      <div class="game-controls">
+        <button id="start-game" class="btn btn-primary">Start Game</button>
+        <span>Score: <strong id="score">0</strong></span>
+        <span>Time: <strong id="time">20</strong>s</span>
+      </div>
+    </section>
+
+    <section id="message" class="container section">
+      <h3>Secret Message</h3>
+      <p>Press the red heart to reveal a message.</p>
+      <div class="secret-area">
+        <button id="reveal" class="heart-small" aria-expanded="false">♥</button>
+        <div id="typewriter" class="typewriter" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <footer class="site-footer container" role="contentinfo">
+      <p>Made with ♥ — Customize this page and surprise her.</p>
+      <p class="muted">Tip: Replace the placeholder images in /assets and edit messages in script.js</p>
+    </footer>
+  </main>
+
+  <!-- Modal: Will you be my Valentine? -->
+  <div id="valentine-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="val-title" aria-hidden="true">
+    <div class="modal-panel" role="document">
+      <h2 id="val-title">Will you be my Valentine?</h2>
+      <p>I picked something special just for you — will you be mine?</p>
+      <div class="modal-actions" id="modal-actions">
+        <button id="val-yes" class="btn btn-primary">Yes! ❤️</button>
+        <button id="val-no" class="btn" aria-label="No (not clickable)">No</button>
+      </div>
+      <button class="modal-close" id="val-close" aria-label="Close dialog">✕</button>
+    </div>
+  </div>
+
+  <!-- YouTube player (visually hidden offscreen) -->
+  <div id="youtube-player-wrapper" aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
+    <div id="player"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
