@@ -2,7 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', ()=> {
   // --- BACKGROUND TOGGLE (moved from inline) ---
-  // Options: 'photo' => assets/image 3.JPEG, 'gradient' => default gradient, 'none' => pink
+  // Options: 'photo' => assets/3.JPEG, 'gradient' => default gradient, 'none' => plain white
   const BG_KEY = 'valentine_bg_choice';
   const bgToggleBtn = document.getElementById('bg-toggle');
   const bgOrder = ['photo', 'gradient', 'none']; // cycle order
@@ -16,10 +16,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
       bgToggleBtn.textContent = `Background: ${label}`;
       bgToggleBtn.setAttribute('aria-pressed', String(choice !== 'gradient'));
     }
-    
     try { localStorage.setItem(BG_KEY, choice); } catch(e) {}
   }
-  
   // load saved choice or default to photo
   const saved = (function(){ try { return localStorage.getItem(BG_KEY); } catch(e){ return null; } })();
   applyBackground(saved || 'photo');
@@ -248,7 +246,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     valYes.addEventListener('click', ()=>{
       spawnConfettiHearts(60);
       valYes.disabled = true;
-      valYes.textContent = "SO HAPPY YOU SAID YES! I LOVE YOU! 🥰💖";
+      valYes.textContent = "SO HAPPY YOU SAID YES! I LOVE YOU! 🥰";
       setTimeout(()=> {
         closeModal();
         if(openBtn) openBtn.click();
@@ -351,7 +349,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
   // --- QUIZ ---
   const quizQuestions = [
     {q:"Where did we first meet?", a:["Gold Reef City","At the mall","At groove","At the park"], correct:0},
-    {q:"What's my favourite snack?", a:["Chocolate","Marshmallows","Biltong","Nougat"], correct:2},
+    {q:"What's my favourite snack?", a:["Chocolate","Marmallows","Biltong","Nougat"], correct:2},
     {q:"Which movie did we watch on our first movie date?", a:["Sinners","F1","Den of Thieves","Wicked"], correct:0}
   ];
   let currentQ = 0, scoreQ = 0;
@@ -443,7 +441,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
   const revealBtn = document.getElementById('reveal');
   const typeArea = document.getElementById('typewriter');
   const typeWriter = {
-    text: "Every love story is beautiful, but ours is my favourite place to be. Today, on Valentine’s Day, and for the rest of my life.❤️✨",
+    text: "Every love story is beautiful, but ours is my favourite place to be. Today, on Valentine’s Day, and for the rest of my life.❤️",
     i: 0,
     running: false,
     start(){
