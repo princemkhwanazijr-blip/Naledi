@@ -4,20 +4,95 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>For You — Happy Valentine's Day</title>
+
+  <!-- Page styles (keeps content readable while letting the photo show through) -->
+  <style>
+    :root{
+      --accent:#ff5e8a;
+      --muted:#666;
+      --card-bg: rgba(255,255,255,0.82); /* slightly translucent cards so background shows */
+      --card-bg-strong: rgba(255,255,255,0.96);
+      --text:#222;
+      --radius:14px;
+      --max-width:1000px;
+      --font-sans: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    html, body { height: 100%; margin: 0; font-family: var(--font-sans); color: var(--text); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+
+    /* Full-page background using image 3.JPEG in assets/ */
+    body {
+      background-image:
+        linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.18)), /* subtle dark overlay for legibility */
+        url('assets/3.JPEG');
+      background-size: cover;            /* make image cover viewport */
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;      /* pleasant parallax on desktop */
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    /* Responsive: avoid fixed attachment on mobile for performance */
+    @media (max-width: 720px) {
+      body { background-attachment: scroll; }
+    }
+
+    /* Layout container */
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 1rem; }
+
+    /* Header */
+    .site-header {
+      background: linear-gradient(rgba(255,255,255,0.66), rgba(255,255,255,0.56));
+      backdrop-filter: blur(6px);
+      padding: 0.5rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+    .site-header .container { display:flex; align-items:center; justify-content:space-between; }
+
+    /* Make main content cards translucent so the background remains visible */
+    main .section, .quiz, .typewriter, .site-footer, .modal-panel {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+    .site-footer { background: var(--card-bg-strong); }
+
+    /* Basic utilities used by the page */
+    .muted { color: var(--muted); }
+    .btn { background:#fff; border:1px solid #eee; padding:0.5rem 0.9rem; border-radius:10px; cursor:pointer; }
+    .btn-primary { background: var(--accent); color: #fff; border: none; }
+    .hero { padding: 2rem 0 3rem; }
+    .hero-inner { display:flex; gap:2rem; align-items:center; justify-content:space-between; }
+    .hero-text h2 { font-size:1.6rem; margin:0 0 0.4rem; color:#fff; text-shadow: 0 2px 12px rgba(0,0,0,0.6); }
+    .countdown { margin:0.5rem 0; padding:0.4rem 0.6rem; border-radius:10px; background: rgba(255,255,255,0.9); display:inline-block; border:1px solid rgba(255,0,80,0.06); font-weight:600; color:var(--accent); }
+
+    /* Gallery grid tweak so images are shown on translucent cards */
+    .gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:0.8rem; }
+    .gallery-grid figure { margin:0; overflow:hidden; border-radius:10px; background: rgba(255,255,255,0.85); }
+    .gallery-grid img { width:100%; height:200px; object-fit:cover; display:block; }
+
+    /* Modal stays on top */
+    .modal { position: fixed; inset:0; display:flex; align-items:center; justify-content:center; background: rgba(0,0,0,0.45); z-index: 100; }
+    .modal.hidden { display:none; }
+    .modal-panel { padding:1.25rem; max-width:420px; width:90%; text-align:center; }
+
+    /* Accessibility: ensure focus outlines are visible */
+    :focus { outline: 3px solid rgba(255,94,138,0.18); outline-offset: 2px; }
+  </style>
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header" role="banner">
-      <div class="container" style="display:flex;align-items:center;justify-content:space-between;">
-         <h1 id="brand">For My Love, Naledi ♥✨</h1>
-  <body class="bg-photo">
-        <div style="display:flex;gap:0.75rem;align-items:center">
-          <!-- Background toggle button -->
-          <button id="bg-toggle" class="btn" aria-pressed="false" aria-label="Toggle background">Background: Photo</button>
-
-           <nav class="main-nav" aria-label="Main navigation">
-               <button class="nav-toggle" aria-controls="nav-links" aria-expanded="false">☰</button>
-               <ul id="nav-links">
+    <div class="container">
+      <h1 id="brand">For My Love, Naledi! ♥✨</h1>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-toggle" aria-controls="nav-links" aria-expanded="false">☰</button>
+        <ul id="nav-links">
           <li><a href="#hero">Home</a></li>
           <li><a href="#story">Our Story</a></li>
           <li><a href="#gallery">Gallery</a></li>
@@ -27,51 +102,52 @@
         </ul>
       </nav>
     </div>
-  </div>
-</header>
+  </header>
 
   <main>
     <section id="hero" class="hero" tabindex="-1">
       <div class="container hero-inner">
         <div class="hero-text">
-          <h2>Happy Valentine's Day, Naledi! 💘✨</h2>
+          <h2>Happy Valentine's Day, Naledi!💘✨</h2>
 
           <div class="countdown" aria-live="polite" id="countdown" title="Countdown to Valentine's Day">
             <strong id="cd-days">--</strong> days
             <span id="cd-time">--:--:--</span>
           </div>
 
-          <div class="cta-row">
-            <button id="ask-btn" class="btn">I have a question for you. 🫣💌</button>
+          <div class="cta-row" style="display:flex;gap:0.6rem;margin-top:0.8rem;">
+            <button id="open-btn" class="btn btn-primary" aria-haspopup="true">Open Surprise ♥</button>
+            <button id="ask-btn" class="btn">I have a question for you 🫣💌</button>
             <button id="play-music" class="btn" aria-pressed="false">Play "Death Do Us Part" ♪</button>
           </div>
         </div>
         <div class="hero-art" aria-hidden="true">
-    
+          <div class="big-heart" id="big-heart" title="Click me" style="width:140px;height:140px;background:#ff5e8a;border-radius:50% 50% 0 0;transform:rotate(-45deg);"></div>
         </div>
       </div>
     </section>
 
+    <!-- rest of the page (story, gallery, quiz, game, message, footer) -->
+    <!-- keep your existing markup below; it will inherit the translucent card styles so background shows through -->
+
     <section id="story" class="container section">
       <h3>Our Story</h3>
       <ol class="timeline" aria-label="Timeline of our story">
-        <li><strong>The day we first met:</strong> Friday, the 3rd of January 2025 📅 — I think I was a little nervous and sadly, you could tell. 😂</li>
-        <li><strong>Our first date:</strong> Gold Reef City 🎡 - and I won our bowling match. 😌🎳</li>
-        <li><strong>Special moments:</strong> Our trip to Cape Town is a core memory for me 🏖️ - Next vacation destination? 🤔💭 </li>
+        <li><strong>The day we met:</strong> Friday, the 3rd of Jan. 2025 📅 - You claim I was nervouse, and sadly you might be right. 😂</li>
+        <li><strong>Our first date:</strong> Gold Reef City 🎡 - I won the bowling match 😌🎳</li>
+        <li><strong>Special moments:</strong> Our trip to Cape Town 🏖️ - Next vacation destination? 🤔💭</li>
       </ol>
     </section>
 
     <section id="gallery" class="container section">
       <h3>Gallery</h3>
-      <p class="muted">Click to view 📸</p>
+      <p class="muted">Click to view — replace images in the /assets folder.</p>
       <div class="gallery-grid" id="gallery-grid">
-        <!-- Keep any existing photo1.jpg if you have it -->
-        <img src="assets/image 1.JPEG" alt="Gallery photo 1" loading="lazy" />
-        <!-- New photos you provided — save them with these filenames -->
-        <img src="assets/image 7.JPEG" alt="Gallery photo 2" loading="lazy" />
-        <img src="assets/image 8.JPG" alt="Gallery photo 3" loading="lazy" />
-        <img src="assets/image 5.JPEG" alt="Gallery photo 4" loading="lazy" />
-        <img src="assets/image 2.JPEG" alt="Gallery photo 5" loading="lazy" />
+        <img src="assets/image 1.JPEG" alt="Photo 1" loading="lazy" />
+        <img src="assets/image 7.JPEG" alt="Photo 2" loading="lazy" />
+        <img src="assets/image 8.JPG" alt="Photo 3" loading="lazy" />
+        <img src="assets/image 5.JPEG" alt="Photo 4" loading="lazy" />
+        <img src="assets/image 2.JPEG" alt="Photo 5" loading="lazy" />
       </div>
     </section>
 
@@ -108,12 +184,11 @@
     </section>
 
     <footer class="site-footer container" role="contentinfo">
-      <p>Made with ♥ — Mr. M ♥.</p>
-     
+      <p>Made with ♥ — Mr. M ♥</p>
     </footer>
   </main>
 
-  <!-- Modal: Will you be my Valentine? -->
+  <!-- Modal + hidden YouTube player and site scripts (keeps existing behavior) -->
   <div id="valentine-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="val-title" aria-hidden="true">
     <div class="modal-panel" role="document">
       <h2 id="val-title">Will you be my Valentine?</h2>
@@ -126,7 +201,6 @@
     </div>
   </div>
 
-  <!-- YouTube player (visually hidden offscreen) -->
   <div id="youtube-player-wrapper" aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
     <div id="player"></div>
   </div>
