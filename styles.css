@@ -11,25 +11,44 @@
   --font-sans: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
+/* Basic reset */
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
   margin:0;
   font-family:var(--font-sans);
-  background-image:
-    linear-gradient(rgba(255,94,138,0.12), rgba(255,255,255,0.88)),
-    url('assets/background.jpg');
-  background-size: cover;
-  background-position: center center;
-  background-attachment: fixed;
   color:var(--text);
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   line-height:1.45;
+
+  /* default background (fallback gradient) — will be overridden by .bg-* classes */
+  background: linear-gradient(180deg,var(--bg),#fff);
+  background-size: cover;
+  background-position: center center;
 }
 
+/* Background variants (applied as classes on <body>) */
+body.bg-photo {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.18)),
+    url('assets/3.JPEG');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+body.bg-gradient {
+  background: linear-gradient(180deg,var(--bg),#fff);
+  background-attachment: scroll;
+}
+body.bg-none {
+  background: #fff;
+}
+
+/* On small screens avoid fixed attachment for performance */
 @media (max-width:720px){
-  body { background-attachment: scroll; }
+  body.bg-photo { background-attachment: scroll; }
 }
 
 /* Container */
@@ -56,7 +75,7 @@ body{
 /* Hero */
 .hero{padding:2rem 0 3rem}
 .hero-inner{display:flex;gap:2rem;align-items:center;justify-content:space-between}
-.hero-text h2{font-size:1.6rem;margin:0 0 0.4rem;color:var(--text);text-shadow: 0 1px 0 rgba(255,255,255,0.7)}
+.hero-text h2{font-size:1.6rem;margin:0 0 0.4rem;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,0.6)}
 .hero-text p{margin:0 0 1rem;color:var(--muted)}
 .btn{background:#fff;border:1px solid #eee;padding:0.5rem 0.9rem;border-radius:10px;cursor:pointer}
 .btn-primary{background:var(--accent);color:#fff;border:none}
@@ -73,26 +92,17 @@ body{
 /* Sections */
 .section{padding:1.25rem 0}
 .muted{color:var(--muted)}
+/* Make content areas slightly elevated for contrast over the photo */
 .quiz, .site-footer, .modal-panel, .typewriter{
-  background: rgba(255,255,255,0.95);
+  background: rgba(255,255,255,0.92);
   box-shadow: 0 8px 24px rgba(0,0,0,0.08);
   border-radius: var(--radius);
 }
 
 /* Timeline & gallery */
 .timeline{padding-left:1rem}
-.gallery-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:0.8rem;
-  align-items:start;
-}
-.gallery-grid figure{margin:0; background:rgba(255,255,255,0.9); border-radius:10px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.06);}
-.gallery-grid img{width:100%;height:200px;object-fit:cover;display:block}
-.gallery-grid figcaption{padding:0.5rem 0.6rem;font-size:0.95rem;color:var(--muted);text-align:center;border-top:1px solid rgba(0,0,0,0.03)}
-
-/* Make captions easier to edit later (js-friendly) */
-.gallery-grid figcaption[contenteditable="true"]{outline:2px dashed rgba(255,94,138,0.12)}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0.6rem}
+.gallery-grid img{width:100%;height:140px;object-fit:cover;border-radius:10px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
 
 /* Quiz */
 .quiz{background:var(--card);padding:1rem;border-radius:var(--radius);box-shadow:0 6px 18px rgba(0,0,0,0.04)}
