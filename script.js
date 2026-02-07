@@ -2,17 +2,16 @@
 
 document.addEventListener('DOMContentLoaded', ()=> {
   // --- BACKGROUND TOGGLE (moved from inline) ---
-  // Options: 'photo' => assets/3.JPEG, 'gradient' => default gradient, 'none' => plain white
+  // Options: 'photo' => assets/3.JPEG
   const BG_KEY = 'valentine_bg_choice';
   const bgToggleBtn = document.getElementById('bg-toggle');
-  const bgOrder = ['photo', 'gradient', 'none']; // cycle order
+  const bgOrder = ['photo']; // cycle order
   function applyBackground(choice) {
-    document.body.classList.remove('bg-photo','bg-gradient','bg-none');
+    document.body.classList.remove('bg-photo');
     if(choice === 'photo') document.body.classList.add('bg-photo');
     else if(choice === 'gradient') document.body.classList.add('bg-gradient');
     else document.body.classList.add('bg-none');
     if(bgToggleBtn) {
-      const label = choice === 'photo' ? 'Photo' : (choice === 'gradient' ? 'Gradient' : 'None');
       bgToggleBtn.textContent = `Background: ${label}`;
       bgToggleBtn.setAttribute('aria-pressed', String(choice !== 'gradient'));
     }
