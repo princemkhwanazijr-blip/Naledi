@@ -40,14 +40,6 @@ body.bg-photo {
 .main-nav a{color:var(--muted);text-decoration:none;padding:0.35rem 0.6rem;border-radius:8px}
 .main-nav a:hover, .main-nav a:focus{background:var(--accent-2);color:#fff}
 
-/* Mobile toggle */
-.nav-toggle{display:none;background:none;border:none;font-size:1.1rem}
-@media(max-width:720px){
-  .main-nav ul{display:none;flex-direction:column;background:rgba(255,255,255,0.95);position:absolute;right:1rem;top:3.6rem;padding:0.5rem;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.08)}
-  .nav-toggle{display:inline-block}
-  .main-nav[open] ul{display:flex}
-}
-
 /* Hero */
 .hero{padding:2rem 0 3rem}
 .hero-inner{display:flex;gap:2rem;align-items:center;justify-content:space-between}
