@@ -1,6 +1,8 @@
 // script.js — site interactivity (nav, countdown, quiz, game, modal, youtube, etc.)
 
 document.addEventListener('DOMContentLoaded', ()=> {
+  // --- BACKGROUND TOGGLE (moved from inline) ---
+  // Options: 'photo' => assets/3.JPEG, 'gradient' => default gradient, 'none' => plain white
   const BG_KEY = 'valentine_bg_choice';
   const bgToggleBtn = document.getElementById('bg-toggle');
   const bgOrder = ['photo', 'gradient', 'none']; // cycle order
@@ -346,8 +348,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
   // --- QUIZ ---
   const quizQuestions = [
-    {q:"Where did we first meet?", a:["Gold Reef City","At the mall","At groove","At the park"], correct:0},
-    {q:"What's my favourite snack?", a:["Chocolate","Marmallows","Biltong","Nougat"], correct:2},
+    {q:"Where did we first meet?", a:["Gold Reef City","At the mall","Online","At groove"], correct:0},
+    {q:"What's my favorite dessert?", a:["Chocolate","Marshmallows","Biltong","Nougat"], correct:2},
     {q:"Which movie did we watch on our first movie date?", a:["Sinners","F1","Den of Thieves","Wicked"], correct:0}
   ];
   let currentQ = 0, scoreQ = 0;
