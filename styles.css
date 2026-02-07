@@ -36,7 +36,7 @@ body.bg-photo {
   background-image:
      linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), /* White overlay at 70% */
      /* Using a root-relative path often works best on GitHub */
-    url('assets/3.JPEG');
+    url('assets/image 3.JPEG');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
