@@ -11,6 +11,23 @@
   --font-sans: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
+/* Basic reset */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:var(--font-sans);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+
+  /* default background (fallback gradient) — will be overridden by .bg-* classes */
+  background: linear-gradient(180deg,var(--bg),#fff);
+  background-size: cover;
+  background-position: center center;
+}
+
 /* Background variants (applied as classes on <body>) */
 body.bg-photo {
   background-image:
@@ -20,6 +37,13 @@ body.bg-photo {
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+body.bg-gradient {
+  background: linear-gradient(180deg,var(--bg),#fff);
+  background-attachment: scroll;
+}
+body.bg-none {
+  background: #fff;
 }
 
 /* On small screens avoid fixed attachment for performance */
@@ -39,6 +63,14 @@ body.bg-photo {
 .main-nav ul{display:flex;gap:0.5rem;list-style:none;margin:0;padding:0}
 .main-nav a{color:var(--muted);text-decoration:none;padding:0.35rem 0.6rem;border-radius:8px}
 .main-nav a:hover, .main-nav a:focus{background:var(--accent-2);color:#fff}
+
+/* Mobile toggle */
+.nav-toggle{display:none;background:none;border:none;font-size:1.1rem}
+@media(max-width:720px){
+  .main-nav ul{display:none;flex-direction:column;background:rgba(255,255,255,0.95);position:absolute;right:1rem;top:3.6rem;padding:0.5rem;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+  .nav-toggle{display:inline-block}
+  .main-nav[open] ul{display:flex}
+}
 
 /* Hero */
 .hero{padding:2rem 0 3rem}
