@@ -16,8 +16,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
       bgToggleBtn.textContent = `Background: ${label}`;
       bgToggleBtn.setAttribute('aria-pressed', String(choice !== 'gradient'));
     }
+    
     try { localStorage.setItem(BG_KEY, choice); } catch(e) {}
   }
+  
   // load saved choice or default to photo
   const saved = (function(){ try { return localStorage.getItem(BG_KEY); } catch(e){ return null; } })();
   applyBackground(saved || 'photo');
