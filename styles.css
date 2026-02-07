@@ -9,27 +9,6 @@
   --max-width:1000px;
   --gap:1rem;
   --font-sans: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
-.container {
-  /* Establish a positioning context for the pseudo-element */
-  position: relative;
-  /* Define a height for the container, or it will collapse */
-  height: 400px;
-  width: 100%;
-}
-.container::before {
-  content: ""; /* Required for pseudo-elements to render */
-  position: absolute; /* Position relative to the .container */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('image 4.JPEG'); /* Your background image */
-  background-size: cover; /* Optional: ensures the image covers the container */
-  opacity: 0.4; /* Adjust the opacity value (0.0 to 1.0) */
-  z-index: -1; /* Send the pseudo-element behind the content */
-}
-
 .content {
   position: relative; /* Ensure content is above the pseudo-element */
   z-index: 1; /* Bring content to the front */
