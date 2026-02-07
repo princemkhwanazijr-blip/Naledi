@@ -409,7 +409,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
   const revealBtn = document.getElementById('reveal');
   const typeArea = document.getElementById('typewriter');
   const typeWriter = {
-    text: "Every love story is beautiful, but ours is my favourite place to be. Today, on Valentine’s Day, and for the rest of my life.❤️",
+    text: "Every love story is beautiful, but ours is my favourite place to be. Today, on Valentine’s Day, and for the rest of my life.❤️✨",
     i: 0,
     running: false,
     start(){
