@@ -1,8 +1,6 @@
 // script.js — site interactivity (nav, countdown, quiz, game, modal, youtube, etc.)
 
 document.addEventListener('DOMContentLoaded', ()=> {
-  // --- BACKGROUND TOGGLE (moved from inline) ---
-  // Options: 'photo' => assets/3.JPEG, 'gradient' => default gradient, 'none' => plain white
   const BG_KEY = 'valentine_bg_choice';
   const bgToggleBtn = document.getElementById('bg-toggle');
   const bgOrder = ['photo', 'gradient', 'none']; // cycle order
