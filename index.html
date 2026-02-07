@@ -4,94 +4,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>For You — Happy Valentine's Day</title>
-
-   <!-- Page styles (keeps content readable while letting the photo show through) -->
-  <style>
-    :root{
-      --accent:#ff5e8a;
-      --muted:#666;
-      --card-bg: rgba(255,255,255,0.82); /* slightly translucent cards so background shows */
-      --card-bg-strong: rgba(255,255,255,0.96);
-      --text:#222;
-      --radius:14px;
-      --max-width:1000px;
-      --font-sans: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-
-    html, body { height: 100%; margin: 0; font-family: var(--font-sans); color: var(--text); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
-
-    /* Full-page background using image 3.JPEG in assets/ */
-    body {
-      background-image:
-        linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.18)), /* subtle dark overlay for legibility */
-        url('assets/3.JPEG');
-      background-size: cover;            /* make image cover viewport */
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;      /* pleasant parallax on desktop */
-      display: flex;
-      flex-direction: column;
-      min-height: 100%;
-    }
-
-    /* Responsive: avoid fixed attachment on mobile for performance */
-    @media (max-width: 720px) {
-      body { background-attachment: scroll; }
-    }
-
-    /* Layout container */
-    .container { max-width: var(--max-width); margin: 0 auto; padding: 1rem; }
-
-    /* Header */
-    .site-header {
-      background: linear-gradient(rgba(255,255,255,0.66), rgba(255,255,255,0.56));
-      backdrop-filter: blur(6px);
-      padding: 0.5rem 0;
-      position: sticky;
-      top: 0;
-      z-index: 40;
-    }
-    .site-header .container { display:flex; align-items:center; justify-content:space-between; }
-
-    /* Make main content cards translucent so the background remains visible */
-    main .section, .quiz, .typewriter, .site-footer, .modal-panel {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-    }
-    .site-footer { background: var(--card-bg-strong); }
-
-    /* Basic utilities used by the page */
-    .muted { color: var(--muted); }
-    .btn { background:#fff; border:1px solid #eee; padding:0.5rem 0.9rem; border-radius:10px; cursor:pointer; }
-    .btn-primary { background: var(--accent); color: #fff; border: none; }
-    .hero { padding: 2rem 0 3rem; }
-    .hero-inner { display:flex; gap:2rem; align-items:center; justify-content:space-between; }
-    .hero-text h2 { font-size:1.6rem; margin:0 0 0.4rem; color:#fff; text-shadow: 0 2px 12px rgba(0,0,0,0.6); }
-    .countdown { margin:0.5rem 0; padding:0.4rem 0.6rem; border-radius:10px; background: rgba(255,255,255,0.9); display:inline-block; border:1px solid rgba(255,0,80,0.06); font-weight:600; color:var(--accent); }
-
-    /* Gallery grid tweak so images are shown on translucent cards */
-    .gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:0.8rem; }
-    .gallery-grid figure { margin:0; overflow:hidden; border-radius:10px; background: rgba(255,255,255,0.85); }
-    .gallery-grid img { width:100%; height:200px; object-fit:cover; display:block; }
-
-    /* Modal stays on top */
-    .modal { position: fixed; inset:0; display:flex; align-items:center; justify-content:center; background: rgba(0,0,0,0.45); z-index: 100; }
-    .modal.hidden { display:none; }
-    .modal-panel { padding:1.25rem; max-width:420px; width:90%; text-align:center; }
-
-    /* Accessibility: ensure focus outlines are visible */
-    :focus { outline: 3px solid rgba(255,94,138,0.18); outline-offset: 2px; }
-  </style>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header" role="banner">
-    <div class="container">
-      <h1 id="brand">For You ♥</h1>
-      <nav class="main-nav" aria-label="Main navigation">
-        <button class="nav-toggle" aria-controls="nav-links" aria-expanded="false">☰</button>
-        <ul id="nav-links">
+      <div class="container" style="display:flex;align-items:center;justify-content:space-between;">
+         <h1 id="brand">For You ♥</h1>
+
+        <div style="display:flex;gap:0.75rem;align-items:center">
+          <!-- Background toggle button -->
+          <button id="bg-toggle" class="btn" aria-pressed="false" aria-label="Toggle background">Background: Photo</button>
+
+           <nav class="main-nav" aria-label="Main navigation">
+               <button class="nav-toggle" aria-controls="nav-links" aria-expanded="false">☰</button>
+               <ul id="nav-links">
           <li><a href="#hero">Home</a></li>
           <li><a href="#story">Our Story</a></li>
           <li><a href="#gallery">Gallery</a></li>
@@ -101,7 +27,8 @@
         </ul>
       </nav>
     </div>
-  </header>
+  </div>
+</header>
 
   <main>
     <section id="hero" class="hero" tabindex="-1">
