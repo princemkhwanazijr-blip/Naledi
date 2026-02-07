@@ -11,39 +11,15 @@
   --font-sans: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* Basic reset */
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family:var(--font-sans);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  line-height:1.45;
-
-  /* default background (fallback gradient) — will be overridden by .bg-* classes */
-  background: linear-gradient(180deg,var(--bg),#fff);
-  background-size: cover;
-  background-position: center center;
-}
-
 /* Background variants (applied as classes on <body>) */
 body.bg-photo {
   background-image:
     linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)),
-    url('https://github.com/princemkhwanazijr-blip/Naledi/blob/main/assets/image%203.JPEG');
+    url('assets/3.JPEG');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-}
-body.bg-gradient {
-  background: linear-gradient(180deg,var(--bg),#fff);
-  background-attachment: scroll;
-}
-body.bg-none {
-  background: #fff;
 }
 
 /* On small screens avoid fixed attachment for performance */
