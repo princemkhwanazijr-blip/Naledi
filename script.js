@@ -348,7 +348,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
   // --- QUIZ ---
   const quizQuestions = [
     {q:"Where did we first meet?", a:["Gold Reef City","At the mall","Online","At groove"], correct:0},
-    {q:"What's my favorite dessert?", a:["Chocolate","Marshmallows","Biltong","Nougat"], correct:2},
+    {q:"What's my favorite snack?", a:["Chocolate","Marshmallows","Biltong","Nougat"], correct:2},
     {q:"Which movie did we watch on our first movie date?", a:["Sinners","F1","Den of Thieves","Wicked"], correct:0}
   ];
   let currentQ = 0, scoreQ = 0;
