@@ -1,6 +1,36 @@
 // script.js — site interactivity (nav, countdown, quiz, game, modal, youtube, etc.)
 
 document.addEventListener('DOMContentLoaded', ()=> {
+  // --- BACKGROUND TOGGLE (moved from inline) ---
+  // Options: 'photo' => assets/image 3.JPEG, 'gradient' => default gradient, 'none' => plain white
+  const BG_KEY = 'valentine_bg_choice';
+  const bgToggleBtn = document.getElementById('bg-toggle');
+  const bgOrder = ['photo', 'gradient', 'none']; // cycle order
+  function applyBackground(choice) {
+    document.body.classList.remove('bg-photo','bg-gradient','bg-none');
+    if(choice === 'photo') document.body.classList.add('bg-photo');
+    else if(choice === 'gradient') document.body.classList.add('bg-gradient');
+    else document.body.classList.add('bg-none');
+    if(bgToggleBtn) {
+      const label = choice === 'photo' ? 'Photo' : (choice === 'gradient' ? 'Gradient' : 'None');
+      bgToggleBtn.textContent = `Background: ${label}`;
+      bgToggleBtn.setAttribute('aria-pressed', String(choice !== 'gradient'));
+    }
+    try { localStorage.setItem(BG_KEY, choice); } catch(e) {}
+  }
+  // load saved choice or default to photo
+  const saved = (function(){ try { return localStorage.getItem(BG_KEY); } catch(e){ return null; } })();
+  applyBackground(saved || 'photo');
+
+  if(bgToggleBtn){
+    bgToggleBtn.addEventListener('click', () => {
+      const current = (localStorage.getItem(BG_KEY) || 'photo');
+      const idx = (bgOrder.indexOf(current) + 1) % bgOrder.length;
+      const next = bgOrder[idx];
+      applyBackground(next);
+    });
+  }
+
   // --- NAV TOGGLE (mobile) ---
   const nav = document.querySelector('.main-nav');
   const toggle = document.querySelector('.nav-toggle');
@@ -70,8 +100,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
   let ytReady = false;
   let ytLoading = false;
   const YT_VIDEO_ID = 'UiKDgyfKQZE'; // provided YouTube link ID
-  playMusicBtn.textContent = 'Play "Death Do Us Part" ♪';
-  playMusicBtn.setAttribute('aria-pressed', 'false');
+  if(playMusicBtn){
+    playMusicBtn.textContent = 'Play "Death Do Us Part" ♪';
+    playMusicBtn.setAttribute('aria-pressed', 'false');
+  }
 
   window.onYouTubeIframeAPIReady = function() {
     ytPlayer = new YT.Player('player', {
@@ -134,7 +166,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     }, 200);
   }
 
-  playMusicBtn.addEventListener('click', (ev) => {
+  if(playMusicBtn) playMusicBtn.addEventListener('click', (ev) => {
     if (!window.YT || !ytPlayer) {
       loadYouTubeAPI();
       playMusicBtn.disabled = true;
@@ -214,7 +246,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     valYes.addEventListener('click', ()=>{
       spawnConfettiHearts(60);
       valYes.disabled = true;
-      valYes.textContent = "SO HAPPY YOU SAID YES! I LOVE YOU! 🥰";
+      valYes.textContent = "SO HAPPY YOU SAID YES! I LOVE YOU! 🥰💖";
       setTimeout(()=> {
         closeModal();
         if(openBtn) openBtn.click();
@@ -316,8 +348,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
   // --- QUIZ ---
   const quizQuestions = [
-    {q:"Where did we first meet?", a:["Gold Reef City","At the library","Online","At the park"], correct:0},
-    {q:"What's my favourite snack?", a:["Chocolate","Marshmellows","Biltong","Nougat"], correct:2},
+    {q:"Where did we first meet?", a:["Gold Reef City","At the mall","At groove","At the park"], correct:0},
+    {q:"What's my favourite snack?", a:["Chocolate","Marshmallows","Biltong","Nougat"], correct:2},
     {q:"Which movie did we watch on our first movie date?", a:["Sinners","F1","Den of Thieves","Wicked"], correct:0}
   ];
   let currentQ = 0, scoreQ = 0;
